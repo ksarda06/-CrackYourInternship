@@ -1,0 +1,14 @@
+//Time Complexity=O(N)
+//Space Complexity=O(1)
+int removeDuplicates(vector<int>& nums) {
+        int count=1;
+        int j=0;
+        for(int i=1;i<nums.size();i++){
+            if(nums[i]!=nums[j]){
+               swap(nums[i],nums[j+1]);
+               j++;
+               count++;
+            }
+        }
+        return count;
+    }
