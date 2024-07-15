@@ -1,0 +1,15 @@
+//Time Complexity=O(N)
+//Space Complexity=O(1)
+void moveZeroes(vector<int>& nums) {
+        int i=0;
+        while(i<nums.size() && nums[i]!=0){
+            i++;
+        }
+        int j=i+1;
+        for(;j<nums.size();j++){
+            if(nums[j]!=0){
+                swap(nums[i],nums[j]);
+                i++;
+            }
+        }
+    }
