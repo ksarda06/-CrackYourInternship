@@ -1,0 +1,11 @@
+//Time Complexity=O(N)
+//Space Complexity=O(1)
+int maxProfit(vector<int>& prices) {
+        int ans=0;
+        int m=prices[prices.size()-1];
+        for(int i=prices.size()-2;i>=0;i--){
+           m=max(m,prices[i]);
+           ans=max(ans,m-prices[i]);
+        }
+        return ans;
+  }
