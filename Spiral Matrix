@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> ans;
+        int m=matrix.size();
+        int n=matrix[0].size();
+        int i=0;
+        int j=matrix[0].size()-1;
+        vector<vector<bool>> vis(m,vector<bool>(n,0));
+        while(i<matrix.size() && j>=0){
+            for(int k=0;k<j;k++){
+                if(!vis[i][k]){
+                    ans.push_back(matrix[i][k]);
+                    vis[i][k]=true;
+                }
+            }
+            i++;
+            for(int l=i;l<m;l++){
+                if(!vis[l][j]){
+                    ans.push_back(matrix[l][j]);
+                    vis[l][j]=true;
+                }
+            }
+            j--;
+            for(int l=j;l>=0;l--){
+                if(!vis[i])
+            }
+        }
+
+    }
+};
