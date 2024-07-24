@@ -1,0 +1,21 @@
+class Solution {
+public:
+    void solve(int o,int c,int n,vector<string>& ans,string temp){
+        if(o==c && o+c==(2*n)){
+            ans.push_back(temp);
+            return;
+        }
+        if(o<n){
+            solve(o+1,c,n,ans,temp+'(');
+        }
+        if(c<o){
+            solve(o,c+1,n,ans,temp+')');
+        }
+    }
+    vector<string> generateParenthesis(int n) {
+        vector<string> ans;
+        string temp="";
+        solve(0,0,n,ans,temp);
+        return ans;
+    }
+};
