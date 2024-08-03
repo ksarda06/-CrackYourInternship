@@ -1,0 +1,18 @@
+int fact(int n){
+        int ans=1;
+        for(int i=1;i<=n;i++){
+            ans=ans*i;
+        }
+        return ans;
+    }
+    vector<vector<int>> uniquePerms(vector<int> &arr ,int n) {
+        // code here
+        set<vector<int>> ans;
+        sort(arr.begin(),arr.end());
+        for(int i=0;i<fact(n);i++){
+            ans.insert(arr);
+            next_permutation(arr.begin(),arr.end());
+        }
+        vector<vector<int>> ans1(ans.begin(),ans.end());
+        return ans1;
+    }
