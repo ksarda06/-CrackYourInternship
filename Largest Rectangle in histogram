@@ -1,0 +1,38 @@
+int largestRectangleArea(vector<int>& heights) {
+        int n=heights.size();
+        int ans=0;
+        vector<int> previous(n,-1);
+        vector<int> next(n,n);
+        stack<int> st;
+        stack<int> st1;
+        for(int i=0;i<n;i++){
+            while(!st.empty() && heights[st.top()]>=heights[i]){
+                st.pop();
+            }
+            if(!st.empty()){
+                previous[i]=st.top();
+            }
+            st.push(i);
+        }
+        for(int i=n-1;i>=0;i--){
+            while(!st1.empty() && heights[st1.top()]>=heights[i]){
+                st1.pop();
+            }
+            if(!st1.empty()){
+                next[i]=st1.top();
+            }
+            st1.push(i);
+        }
+        for(int i=0;i<n;i++){
+            cout<<previous[i]<<" ";
+        }
+        cout<<endl;
+        for(int i=0;i<n;i++){
+            cout<<next[i]<<" ";
+        }
+        for(int i=0;i<n;i++){
+            int width=next[i]-previous[i]-1;
+            ans=max(ans,heights[i]*width);
+        }
+        return ans;
+    }
