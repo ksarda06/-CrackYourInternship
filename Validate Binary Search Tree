@@ -1,0 +1,28 @@
+
+ 
+  struct TreeNode {
+      int val;
+      TreeNode *left;
+      TreeNode *right;
+      TreeNode() : val(0), left(nullptr), right(nullptr) {}
+     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+      TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+  };
+ 
+class Solution {
+public:
+    bool solve(TreeNode* root,long m1,long m2){
+        if(root==nullptr){
+            return true;
+        }
+        if(root->val>=m2 || root->val<=m1){
+            return false;
+        }
+        return solve(root->left,m1,root->val) && solve(root->right,root->val,m2);
+    }
+    bool isValidBST(TreeNode* root) {
+        long m1=LONG_MIN;
+        long m2=LONG_MAX;
+        return solve(root,m1,m2);
+    }
+};
