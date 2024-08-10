@@ -1,0 +1,32 @@
+class Solution {
+public: 
+    void dfs(int i,int j,vector<vector<char>>& grid,vector<vector<bool>>& vis){
+        int m=grid.size();
+        int n=grid[0].size();
+        vis[i][j]=true;
+        int row[4]={-1,0,1,0};
+        int col[4]={0,-1,0,1};
+        for(int k=0;k<4;k++){
+            int newrow=i+row[k];
+            int newcol=j+col[k];
+            if(newrow>=0 && newrow<m &&newcol>=0 && newcol<n && !vis[newrow][newcol] && grid[newrow][newcol]=='1'){
+                dfs(newrow,newcol,grid,vis);
+            }
+        }
+    }
+    int numIslands(vector<vector<char>>& grid) {
+        int m=grid.size();
+        int n=grid[0].size();
+        vector<vector<bool>> vis(m,vector<bool>(n,false));
+        int count=0;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]=='1' && !vis[i][j]){
+                    count++;
+                    dfs(i,j,grid,vis);
+                }
+            }
+        } 
+        return count;
+    }
+};
