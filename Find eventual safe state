@@ -1,0 +1,40 @@
+vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    vector<int> indegree(V,0);
+	    for(int i=0;i<V;i++){
+	        for(int j=0;j<adj[i].size();j++){
+	            indegree[adj[i][j]]++;
+	        }
+	    }
+	    vector<int> ans;
+	    queue<int> q;
+	    for(int i=0;i<indegree.size();i++){
+	        if(indegree[i]==0){
+                q.push(i);
+            }
+	    }
+	    while(!q.empty()){
+	        int t=q.front();
+	        q.pop();
+	        for(int i=0;i<adj[t].size();i++){
+	            indegree[adj[t][i]]--;
+	            if(indegree[adj[t][i]]==0){
+	                q.push(adj[t][i]);
+	            }
+	        }
+	        ans.push_back(t);
+	    }
+	    return ans;
+	}
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        int n=graph.size();
+        vector<int> newgraph[n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<graph[i].size();j++){
+                newgraph[graph[i][j]].push_back(i);
+            }
+        }
+        vector<int> ans=topoSort(n,newgraph);
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
