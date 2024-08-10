@@ -1,0 +1,21 @@
+void dfs(vector<int> adj[],vector<bool>& vis,int j,vector<int>& ans){
+        vis[j]=true;
+        ans.push_back(j);
+        for(int i=0;i<adj[j].size();i++){
+            if(!vis[adj[j][i]]){
+                dfs(adj,vis,adj[j][i],ans);
+            }
+        }
+    }
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+        // Code here
+        vector<bool> vis(V,false);
+        vector<int> ans;
+        for(int  i=0;i<V;i++){
+            if(!vis[i]){
+                dfs(adj,vis,i,ans);
+            }
+        }
+        return ans;
+        
+    }
